@@ -6,6 +6,7 @@ and [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Fixed
+- macOS docs and CI use `ffmpeg-full` (Homebrew's plain `ffmpeg` lacks `drawtext` and `zscale`).
 - HDR sources on an ffmpeg without `zscale` now stop with a clear install hint; SDR sources never need it.
 - The smoke test and CI check each required filter separately and use an SDR source when `zscale` is missing.
 

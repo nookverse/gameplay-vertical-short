@@ -58,7 +58,7 @@ covers unless they ask.
 ## Setup check (first run)
 
 ```bash
-ffmpeg -hide_banner -filters | grep -E "^ *[^ ]+ +(zscale|gradients|zoompan|minterpolate) "  # zscale only for HDR
+ffmpeg -hide_banner -filters | grep -E "^ *[^ ]+ +(drawtext|zscale|gradients|zoompan|minterpolate) "  # zscale only for HDR
 python3 -c "import numpy, scipy, soundfile"        # for the score (pip install -r requirements.txt)
 python3 -c "import kokoro_onnx"                    # only for voiceover
 ```

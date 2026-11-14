@@ -10,7 +10,7 @@ echo "workdir: $D"
 # 1. a 20 s clip plus a test hit sound. HDR10-tagged (PQ / bt2020, like a console capture) when ffmpeg
 #    can tone-map it (zscale), else SDR.
 FILTERS="$(ffmpeg -hide_banner -filters 2>/dev/null)"
-for f in gradients zoompan minterpolate; do
+for f in drawtext gradients zoompan minterpolate; do
   grep -qE "^ *[^ ]+ +$f " <<<"$FILTERS" || { echo "FAIL: ffmpeg lacks the $f filter"; exit 1; }
 done
 if grep -qE "^ *[^ ]+ +zscale " <<<"$FILTERS"; then

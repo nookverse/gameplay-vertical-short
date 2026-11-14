@@ -61,8 +61,8 @@ screen for the first 0.4 s, so the thumbnail is always the cover, never a white 
 
 ### `No such filter: 'gradients'`, or "converting it needs ffmpeg's zscale filter"
 Your ffmpeg build lacks them. `zscale` is only needed for HDR captures. Install a full build: on
-Debian/Ubuntu `apt install ffmpeg` includes both. On macOS, if Homebrew's ffmpeg lacks `zscale`, use
-a full build (evermeet.cx or the `homebrew-ffmpeg` tap). On Windows, use a full static build.
+Debian/Ubuntu `apt install ffmpeg` includes both. On macOS, Homebrew's plain `ffmpeg` is a minimal
+build: install `ffmpeg-full` and put `$(brew --prefix ffmpeg-full)/bin` first on your PATH. On Windows, use a full static build.
 
 ### `no caption font found`
 Set `GVS_FONT` to a bold `.ttf`, for example DejaVu Sans Bold on Linux (`apt install fonts-dejavu-core`).

@@ -56,10 +56,11 @@ level-up pop-ups, no border lines (Facebook penalizes them), keep old versions, 
 
 ## Requirements
 
-- **ffmpeg** with `gradients`, `zoompan` and `minterpolate` (ffmpeg 6.1+; 7+ recommended), plus
+- **ffmpeg** with `drawtext`, `gradients`, `zoompan` and `minterpolate` (ffmpeg 6.1+; 7+ recommended), plus
   `zscale` (libzimg) for **HDR** captures such as PS5 HDR. SDR footage doesn't need it.
-  - macOS: `brew install ffmpeg` (if `zscale` is missing, install a full build, e.g. from
-    [evermeet.cx](https://evermeet.cx/ffmpeg/) or the `homebrew-ffmpeg` tap)
+  - macOS: `brew install ffmpeg-full`, then put it on your PATH (it's keg-only):
+    `echo 'export PATH="$(brew --prefix ffmpeg-full)/bin:$PATH"' >> ~/.zprofile`. Homebrew's plain
+    `ffmpeg` is a minimal build without `drawtext` (captions) or `zscale` (HDR).
   - Debian/Ubuntu: `sudo apt install ffmpeg fonts-dejavu-core`
   - Windows: `winget install Gyan.FFmpeg` (see the [FAQ](docs/FAQ.md#does-it-work-on-windows))
 - **Python 3.10+** with `numpy`, `scipy` and `soundfile` for the score: `pip install -r requirements.txt`
@@ -68,10 +69,10 @@ level-up pop-ups, no border lines (Facebook penalizes them), keep old versions, 
 - Optional: **Kokoro** for the voiceover (`pip install kokoro-onnx` plus two model files, see below)
 - Optional: a **sound-effects library**, such as Blackmagic Design's free Fairlight Sound Library or your own files
 
-Check your ffmpeg (you should see all four; `zscale` only matters for HDR):
+Check your ffmpeg (you should see all five; `zscale` only matters for HDR):
 
 ```bash
-ffmpeg -hide_banner -filters | grep -E "^ *[^ ]+ +(zscale|gradients|zoompan|minterpolate) "
+ffmpeg -hide_banner -filters | grep -E "^ *[^ ]+ +(drawtext|zscale|gradients|zoompan|minterpolate) "
 ```
 
 ## Install
