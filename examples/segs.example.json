@@ -1,0 +1,9 @@
+[
+  {"in": 642.0, "out": 643.6, "speed": 0.4, "top": "17 DEATHS.|ONE WIN.", "bottom": "WAIT FOR IT", "pal": "ultra",
+   "punch": 0.25, "shake": 10, "glitch": true, "flash": true, "vo": 0},
+  {"in": 120.0, "out": 136.0, "speed": 4, "top": "THE RUN", "pal": "neon", "minimap": true, "vo": 1},
+  {"in": 600.5, "out": 603.0, "speed": 0.5, "top": "LEGENDARY|DROP", "bottom": "FROM THE LOCKED CRATE", "pal": "sunset",
+   "cx": 520, "cy": 180, "zw": 760, "punch": 0.2},
+  {"in": 655.0, "out": 659.0, "speed": 1, "top": "COULD YOU|DO IT?", "bottom": "COMMENT YOUR ATTEMPTS", "pal": "violet",
+   "fadeout": true}
+]

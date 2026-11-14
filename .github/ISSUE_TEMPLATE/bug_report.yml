@@ -1,0 +1,26 @@
+name: Bug report
+description: A tool fails or the output looks wrong
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Please don't attach footage you can't share publicly or include personal paths and IDs. For security problems use private reporting (SECURITY.md).
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: The command you ran (or what you asked the agent), what you expected, and what happened.
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: Error output
+      render: text
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: OS, `ffmpeg -version | head -1`, Python version, agent (Claude Code, Codex, ...), and the source format (`ffprobe -v error -show_entries stream=width,height,color_transfer -of compact <file>`).
+    validations:
+      required: true

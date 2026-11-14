@@ -1,0 +1,4 @@
+[[0.0, "impact", 1.5, -2],
+ [3.95, "whoosh", 0.6, -6],
+ [11.95, "lowwhoosh", 1.0, -4],
+ [12.0, "/absolute/path/to/your/own-hit.wav", 1.2, -3]]

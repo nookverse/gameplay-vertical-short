@@ -1,0 +1,20 @@
+# Your footage, renders and project folders never belong in this repo
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.wav
+*.jpg
+*.png
+social-contents/
+work/
+# Kokoro model files
+*.onnx
+voices-*.bin
+# Python / OS
+__pycache__/
+*.pyc
+.venv/
+.env
+.DS_Store
+Thumbs.db

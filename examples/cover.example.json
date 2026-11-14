@@ -1,0 +1,10 @@
+{
+  "out": "my-short/thumbnails/shorts-reels-thumbnail.jpg",
+  "bg": {"img": "my-short/work/hi/h_600.png", "x": 600},
+  "glow": {"color": "0xFFB000", "x": -60, "y": 330},
+  "cards": [{"img": "my-short/work/hi/h_601.png", "crop": [285, 305, 537, 207], "w": 600, "x": 40, "y": 470,
+             "rot": -0.05, "border": "0xFFD27A"}],
+  "texts": [{"text": "FINALLY", "size": 196, "y": 30, "pal": "ultra", "bw": 12},
+            {"text": "17 DEATHS LATER", "size": 96, "y": 300, "pal": "neon", "bw": 8}],
+  "strip": true
+}
