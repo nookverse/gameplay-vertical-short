@@ -6,6 +6,7 @@ and [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Fixed
+- `install.sh` keeps backups outside the skills folder so agents don't load them as a duplicate skill.
 - macOS docs and CI use `ffmpeg-full` (Homebrew's plain `ffmpeg` lacks `drawtext` and `zscale`).
 - HDR sources on an ffmpeg without `zscale` now stop with a clear install hint; SDR sources never need it.
 - The smoke test and CI check each required filter separately and use an SDR source when `zscale` is missing.

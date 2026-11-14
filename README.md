@@ -85,7 +85,8 @@ python3 -m pip install -r requirements.txt
 ```
 
 `install.sh` copies `SKILL.md`, `tools/` and `examples/` into the skills folder. If a skill with the
-same name is already there, it's moved to a time-stamped backup first, never overwritten.
+same name is already there, it's moved to `~/.local/share/gameplay-vertical-short/backups/` first (outside
+the skills folder, so it isn't loaded twice), never overwritten.
 
 **Voiceover (optional, one-time download, about 340 MB):**
 

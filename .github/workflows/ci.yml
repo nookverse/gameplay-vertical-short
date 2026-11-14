@@ -37,4 +37,4 @@ jobs:
       - name: Smoke test
         run: tests/smoke.sh "$RUNNER_TEMP/gvs"
       - name: Install script
-        run: ./install.sh --dir "$RUNNER_TEMP/skills" && ./install.sh --dir "$RUNNER_TEMP/skills" && ls "$RUNNER_TEMP/skills"
+        run: export GVS_BACKUP_DIR="$RUNNER_TEMP/backups"; ./install.sh --dir "$RUNNER_TEMP/skills" && ./install.sh --dir "$RUNNER_TEMP/skills" && test "$(ls "$RUNNER_TEMP/skills")" = gameplay-vertical-short && ls "$RUNNER_TEMP/backups"

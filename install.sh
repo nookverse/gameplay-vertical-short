@@ -4,7 +4,8 @@
 #   ./install.sh --codex       Codex         (~/.codex/skills/gameplay-vertical-short)
 #   ./install.sh --agents      shared agents (~/.agents/skills/gameplay-vertical-short)
 #   ./install.sh --dir PATH    any skills folder
-# An existing copy is moved to a time-stamped backup, never overwritten.
+# An existing copy is moved to ~/.local/share/gameplay-vertical-short/backups/<time>, never overwritten
+# (outside the skills folder, so agents don't load the backup as a second skill).
 set -euo pipefail
 cd "$(dirname "$0")"
 case "${1:-}" in
@@ -17,7 +18,8 @@ esac
 DEST="$BASE/gameplay-vertical-short"
 mkdir -p "$BASE"
 if [ -e "$DEST" ]; then
-  BACKUP="$DEST.backup-$(date +%Y%m%d-%H%M%S)"
+  BACKUP="${GVS_BACKUP_DIR:-$HOME/.local/share/gameplay-vertical-short/backups}/$(date +%Y%m%d-%H%M%S)"
+  mkdir -p "$(dirname "$BACKUP")"
   mv "$DEST" "$BACKUP"
   echo "existing skill moved to $BACKUP"
 fi
