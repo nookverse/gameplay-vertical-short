@@ -5,6 +5,10 @@ and [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- HDR sources on an ffmpeg without `zscale` now stop with a clear install hint; SDR sources never need it.
+- The smoke test and CI check each required filter separately and use an SDR source when `zscale` is missing.
+
 ## [1.0.0] - 2026-11-14
 
 First public release.

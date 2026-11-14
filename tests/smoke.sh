@@ -7,10 +7,22 @@ D="${1:-$(mktemp -d)}"; mkdir -p "$D/work/a" "$D/work/hi" "$D/thumbnails" "$D/sh
 PY="${GVS_PYTHON:-python3}"
 echo "workdir: $D"
 
-# 1. a 20 s HDR10-tagged clip (PQ / bt2020), like a console capture, plus a test hit sound
-ffmpeg -v error -y -f lavfi -i "testsrc2=s=1920x1080:r=60:d=20" -f lavfi -i "sine=f=330:d=20" \
-  -vf "format=yuv420p10le,setparams=color_primaries=bt2020:color_trc=smpte2084:colorspace=bt2020nc" \
-  -c:v libx265 -preset ultrafast -x265-params log-level=error -c:a aac "$D/src.mp4"
+# 1. a 20 s clip plus a test hit sound. HDR10-tagged (PQ / bt2020, like a console capture) when ffmpeg
+#    can tone-map it (zscale), else SDR.
+FILTERS="$(ffmpeg -hide_banner -filters 2>/dev/null)"
+for f in gradients zoompan minterpolate; do
+  grep -qE "^ *[^ ]+ +$f " <<<"$FILTERS" || { echo "FAIL: ffmpeg lacks the $f filter"; exit 1; }
+done
+if grep -qE "^ *[^ ]+ +zscale " <<<"$FILTERS"; then
+  echo "source: HDR10 (zscale available)"
+  ffmpeg -v error -y -f lavfi -i "testsrc2=s=1920x1080:r=60:d=20" -f lavfi -i "sine=f=330:d=20" \
+    -vf "format=yuv420p10le,setparams=color_primaries=bt2020:color_trc=smpte2084:colorspace=bt2020nc" \
+    -c:v libx265 -preset ultrafast -x265-params log-level=error -c:a aac "$D/src.mp4"
+else
+  echo "source: SDR (this ffmpeg has no zscale, so HDR footage would need a full build)"
+  ffmpeg -v error -y -f lavfi -i "testsrc2=s=1920x1080:r=60:d=20" -f lavfi -i "sine=f=330:d=20" \
+    -c:v libx264 -preset ultrafast -pix_fmt yuv420p -c:a aac "$D/src.mp4"
+fi
 ffmpeg -v error -y -f lavfi -i "sine=f=80:d=1.5" "$D/hit.wav"
 SRC="$D/src.mp4"
 

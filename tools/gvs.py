@@ -54,9 +54,17 @@ def is_hdr(src: str) -> bool:
     return trc in ("smpte2084", "arib-std-b67")
 
 
+def has_filter(name: str) -> bool:
+    out = subprocess.run(["ffmpeg", "-hide_banner", "-filters"], capture_output=True, text=True).stdout
+    return re.search(rf"^\s*\S+\s+{re.escape(name)}\s", out, re.M) is not None
+
+
 def tonemap(src: str) -> str:
     mode = os.environ.get("GVS_TONEMAP", "auto").lower()
     hdr = is_hdr(src) if mode == "auto" else mode == "hdr"
+    if hdr and not has_filter("zscale"):
+        die("this source is HDR, and converting it needs ffmpeg's zscale filter (libzimg), which your ffmpeg "
+            "lacks. Install a full ffmpeg build (see the README), or set GVS_TONEMAP=sdr to skip the conversion.")
     return TONEMAP_HDR if hdr else TONEMAP_SDR
 
 
